@@ -9,14 +9,15 @@ import postRouter from './routes/posts.js'
 const app = express();
 dotenv.config()
 
-app.get('/', (req, res) => {
-    res.send('Welcome to Social App Api')
-})
-app.use('/posts', postRouter)
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
+
+app.get('/', (req, res) => {
+    res.send('Welcome to Social App Api')
+})
+app.use('/posts', postRouter)
 
 const connectionURL = process.env.MONGODB_URL;
 const PORT = process.env.PORT || 5000;
