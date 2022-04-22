@@ -1,3 +1,4 @@
+// import { createTheme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 export default makeStyles({
@@ -30,7 +31,7 @@ export default makeStyles({
   overlay2: {
     position: "absolute",
     top: "20px",
-    right: "20px",
+    right: "-10px",
     color: "white",
   },
   grid: {
