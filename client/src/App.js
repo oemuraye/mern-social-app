@@ -26,7 +26,7 @@ function App() {
 
       <Grow in>
         <Container>
-          <Grid container justify="space-between" alignItems="stretch" spacing={3} >
+          <Grid container justify="space-between" alignItems="stretch" spacing={3} direction={{xs: 'column-reverse', md: 'row'}} >
             <Grid item xs={12} sm={7} >
               <Posts setCurrentId={setCurrentId} />
             </Grid>
