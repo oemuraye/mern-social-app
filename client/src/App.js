@@ -19,8 +19,8 @@ function App() {
   
   return (
     <Container maxWidth="lg">
-      <AppBar className={classes.appBar} position="static" color="inherit">
-        <Typography className={classes.heading} variant="h2" align="center">Hey</Typography>
+      <AppBar className={classes.appBar} position="static" color="inherit" sx={{ flexDirection: 'row', }}>
+        <Typography className={classes.heading} variant="h2" align="center">Moments</Typography>
         <img className={classes.image} src={memories} alt="memories" height="60" />
       </AppBar>
 
