@@ -4,7 +4,8 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from 'dotenv'
 
-import postRouter from './routes/posts.js'
+import postRoutes from './routes/posts.js'
+import userRoutes from './routes/users.js'
 
 const app = express();
 dotenv.config()
@@ -17,7 +18,8 @@ app.use(cors());
 app.get('/', (req, res) => {
     res.send('Welcome to Social App Api')
 })
-app.use('/posts', postRouter)
+app.use('/posts', postRoutes)
+app.use('/user', userRoutes)
 
 const connectionURL = process.env.MONGODB_URL;
 const PORT = process.env.PORT || 5000;

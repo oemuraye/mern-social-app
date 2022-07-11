@@ -10,18 +10,34 @@ import Icon from './Icon';
 import Input from './Input'
 import useStyles from './styles'
 import { AUTH } from "../../constants/actionTypes";
+import { signin, signup } from "../../actions/auth";
+
+const initialState = { firstName: '', lastName: '', email: '', password: '' };
 const Auth = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false)
+  const [formData, setFormData] = useState(initialState);
 
   const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
 
-  const handleSubmit = () => {}
+  
+  const handleChange = (e) => {
+    e.preventDefault();
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
 
-  const handleChange = () => {}
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (isSignup) {
+      dispatch(signup(formData, navigate));
+    } else {
+      dispatch(signin(formData, navigate));
+    }
+  }
 
   const switchMode = () => { 
     setIsSignup((prevIsSignup) => !prevIsSignup) 
