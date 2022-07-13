@@ -52,14 +52,31 @@ export const deletePost = async (req, res) => {
 export const likePost = async (req, res) => {
   const { id } = req.params;
 
+  if (!req.userId) return res.json({ message: 'You must be logged in to like a posts' });
+
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).send("No post with that id");
     
   // Get the post you want
   const post = await PostMessage.findById(id);
 
+  // Check if the user has already liked the post
+
+  // if (post.likes.includes(req.userId)) {
+  //   return res.json({ message: "You have already liked this post" });
+  // }
+  const index = post.likes.findIndex(id => id.user.toString() === req.userId);
+
+  if (index !== -1) {
+    // like the post i.e push the userId to the likes array
+    post.likes.push(req.userId);
+  } else {
+    // unlike the post i.e remove the userId from the likes array
+    post.likes = post.likes.filter((id) => id !== String(req.userId));
+  }
+
   // Make modification and save
-  const updatedPost = await PostMessage.findByIdAndUpdate(id, { likeCount: post.likeCount + 1 }, {new: true})
+  const updatedPost = await PostMessage.findByIdAndUpdate(id, post, {new: true})
 
   res.json(updatedPost);
 }
