@@ -1,10 +1,22 @@
 import axios from "axios";
 
-const url = "http://localhost:5000/posts"
+const API = axios.create({ baseURL: "http://localhost:5000" });
 
+// This is the function that will be called to get the data from the server
+// It will send the token to the server to help the middleware to identify the user
+API.interceptors.request.use((req) => {
+    const userToken = localStorage.getItem('profile');
+    if (userToken) {
+        req.headers.Authorization = `Bearer ${JSON.parse(userToken).token}`;
+    }
+    return req;
+})
 
-export const fetchPosts = () => axios.get(url);
-export const createPost = (newPost) => axios.post(url, newPost);
-export const updatePost = (id, updatePost) => axios.patch(`${url}/${id}`, updatePost);
-export const deletePost = (id) => axios.delete(`${url}/${id}`);
-export const likePost = (id) => axios.patch(`${url}/${id}/likePost`);
+export const fetchPosts = () => API.get('/posts');
+export const createPost = (newPost) => API.post('/posts', newPost);
+export const updatePost = (id, updatePost) => API.patch(`/posts/${id}`, updatePost);
+export const deletePost = (id) => API.delete(`/posts/${id}`);
+export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
+
+export const signIn = (formData) => API.post('/user/signin', formData);
+export const signUp = (formData) => API.post('/user/signup', formData);
