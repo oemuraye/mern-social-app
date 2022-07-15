@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AppBar, Avatar, Button, Toolbar, Typography } from "@mui/material";
+import decode from 'jwt-decode'
 
 import useStyles from "./styles";
 import memories from "../../images/memories.png";
@@ -12,15 +13,6 @@ const Navbar = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const [ user, setUser ] = useState(JSON.parse(localStorage.getItem('profile')))
-    // console.log(user);
-
-    useEffect(() => {
-      // const token = user?.token;
-      
-      // JWT
-
-      setUser(JSON.parse(localStorage.getItem('profile')))
-    }, [location])
 
     const logout = () => {
       dispatch({ type: 'LOGOUT' })
@@ -28,7 +20,20 @@ const Navbar = () => {
       navigate('/')
       setUser(null)
     }
-    // console.log('your ' +  user?.result.imageUrl);
+    useEffect(() => {
+      const token = user?.token;
+      
+      // logout user if token is expired
+      if (token) {
+        const decodedToken = decode(token)
+
+        if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+      }
+
+      // change the user name in the navbar when the user is logged in
+      setUser(JSON.parse(localStorage.getItem('profile')))
+    }, [location])
+
     return (
       <AppBar className={classes.appBar} position="static" color="inherit" sx={{ flexDirection: 'row', }}>
         <div className={classes.brandContainer}>
