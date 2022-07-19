@@ -10,7 +10,7 @@ const Paginate = () => {
   return (
     <Pagination
         classes={{ ul: classes.ul }}
-        count={10}
+        count={5}
         page={1}
         variant="outlined"
         color="primary"

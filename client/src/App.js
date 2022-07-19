@@ -39,7 +39,7 @@ const App = () => {
               !user ? <>
                 <Navbar />
                 <Auth />
-              </> : <Navigate to="/posts" />
+              </> : <Nav to="/posts" />
             }
           />
         </Routes>
