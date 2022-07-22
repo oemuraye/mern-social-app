@@ -11,6 +11,21 @@ export const getPosts = async (req, res) => {
   }
 };
 
+export const getPostsBySearch = async (req, res) => {
+  const { searchQuery, tags } = req.query;
+  console.log('sfxv'  + tags);
+
+  try {
+    const title = new RegExp(searchQuery, 'i'); // i is for case insensitive. This converts the searchQuery to a regular expression
+
+    const posts = await PostMessage.find({ $or: [ { title }, { tags: { $in: tags.split(',')} } ]}); // $or is for OR. This will find any post that matches the title or tags
+  
+    res.status(200).json({data: posts});
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}
+
 export const createPost = async (req, res) => {
   const post = req.body
     
