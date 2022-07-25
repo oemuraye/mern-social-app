@@ -31,7 +31,6 @@ const Home = () => {
   
   const searchPost = () => {
     if(search.trim() || tags) {
-      console.log('hey ' + tags);
       dispatch(getPostsBySearch({ search, tags: tags.join(",") })); // tags: tags.join(',) is used to convert the tags array to string
     } else {
       navigate('/');
@@ -53,27 +52,19 @@ const Home = () => {
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
             <AppBar className={classes.appBarSearch} position="static" color="inherit">
-              <TextField 
-                name="search"
-                variant="outlined"
-                label="Search Memories"
-                fullWidth
-                value={search}
+              <TextField  name="search" variant="outlined" label="Search Memories" fullWidth value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 onKeyPress={handleKeyPress}
               />
-              <Autocomplete
-                id="tags-filled"
-                value={tags}
-                options={[]}
-                onChange={(e) => setTags(e.target.value)}
-                renderTags={(tagValue, getTagProps) => 
-                  tagValue.map((option, index) => (
-                    <Chip
-                      variant="outlined"
-                      label={option}
-                      {...getTagProps({ index })}
-                    />
+              <Autocomplete multiple freeSolo id="tags-filled" options={[]}
+                onChange={(e, value) => setTags(value)}
+                renderTags={(value, getTagProps) => 
+                  value.map((option, index) => (
+                      <Chip
+                        variant="outlined"
+                        label={option}
+                        {...getTagProps({ index })}
+                      />
                   ))}
                 style={{ margin: "10px 0" }}
                 renderInput={(params) => (
