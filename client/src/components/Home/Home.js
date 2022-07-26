@@ -20,18 +20,20 @@ const Home = () => {
   const query = useQuery(); 
   const dispatch = useDispatch();
   const [currentId, setCurrentId] = useState(0);
-  const page = query.get("page") || 1;
+  const page = query.get('page') || 1;
+  const searchQuery = query.get('searchQuery')
   const [search, setSearch] = useState("");
   const [tags, setTags] = useState([]);
   
   
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getPosts());
+  // }, [dispatch]);
   
   const searchPost = () => {
     if(search.trim() || tags) {
       dispatch(getPostsBySearch({ search, tags: tags.join(",") })); // tags: tags.join(',) is used to convert the tags array to string
+      navigate(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
     } else {
       navigate('/');
     }
@@ -74,9 +76,11 @@ const Home = () => {
               <Button onClick={searchPost} className={classes.searchButton} color="primary" variant="contained" >Search</Button>
             </AppBar>
             <Form currentId={currentId} setCurrentId={setCurrentId} />
-            <Paper  elevation={6}>
-              <Pagination />
-            </Paper>
+            {(!searchQuery && !tags.length) && (
+              <Paper className={classes.pagination} elevation={6}>
+                <Pagination page={page} />
+              </Paper>
+            )}
           </Grid>
         </Grid>
       </Container>

@@ -21,9 +21,12 @@ export default makeStyles(() => ({
   heading: {
     color: "rgba(0,183,255, 1)",
     textDecoration: "none",
+    fontSize: "2em",
+    fontWeight: 300,
   },
   image: {
-    marginLeft: "15px",
+    marginLeft: "10px",
+    marginTop: "5px",
   },
   toolbar: {
     display: "flex",
@@ -34,10 +37,15 @@ export default makeStyles(() => ({
     display: "flex",
     justifyContent: "space-between",
     width: "400px",
+    alignItems:"center"
+  },
+  logout: {
+    marginLeft: "20px",
   },
   userName: {
     display: "flex",
     alignItems: "center",
+    textAlign: "center",
   },
   brandContainer: {
     display: "flex",

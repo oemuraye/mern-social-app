@@ -2,10 +2,23 @@ import mongoose from 'mongoose';
 import PostMessage from '../models/postMessages.js'
 
 export const getPosts = async (req, res) => {
+  const { page } = req.query
   try {
-    const postMessages = await PostMessage.find()
+    const LIMIT = 3;
+    const startIndex = (Number(page) - 1) * LIMIT // get the starting index on every page. Also Number(***) is use to convert page number to number because it was formated to string from the frontend
+    const total = await PostMessage.countDocuments({})
 
-    res.status(200).json(postMessages)
+
+    const posts = await PostMessage.find()
+      .sort({ _id: -1 })
+      .limit(LIMIT)
+      .skip(startIndex);
+
+    res.status(200).json({
+      data: posts,
+      currentPage: Number(page),
+      numberOfPages: Math.ceil(total / LIMIT),
+    });
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
