@@ -34,7 +34,7 @@ const Post = ({ post, setCurrentId }) => {
 
   return (
     <Card className={classes.card} raised elevation={6}>
-      <ButtonBase component="span" name="test" className={classes.cardAction} onClick={openPost}>
+      <ButtonBase component="a" name="test" className={classes.cardAction} onClick={openPost}>
         <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
         <div className={classes.overlay}>
           <Typography variant="h6">{post.name}</Typography>
