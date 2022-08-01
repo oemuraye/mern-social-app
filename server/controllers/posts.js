@@ -36,6 +36,7 @@ export const getPosts = async (req, res) => {
 
 export const getPostsBySearch = async (req, res) => {
   const { searchQuery, tags } = req.query;
+  console.log(searchQuery + tags);
 
   try {
     const title = new RegExp(searchQuery, 'i'); // i is for case insensitive. This converts the searchQuery to a regular expression

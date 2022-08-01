@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Paper, Typography, CircularProgress, Divider } from "@mui/material";
 
-import { getPost } from '../../actions/posts'
+import { getPost, getPostsBySearch } from '../../actions/posts'
 import useStyles from './styles'
 
 const PostDetails = () => {
@@ -18,6 +18,11 @@ const PostDetails = () => {
     dispatch(getPost(id));
   }, [id]);
 
+  useEffect(() => {
+    if (post) {
+      dispatch(getPostsBySearch({ search: 'none', tags: post.post.tags.join(',') }))
+    }
+  }, [post])
 
   if (!post) return null;
 
@@ -28,6 +33,8 @@ const PostDetails = () => {
       </Paper>
     )
   }
+
+  const recommendedPosts = posts.filter(({ _id }) => _id !== post._id)
 
   return (
     <Paper style={{ padding: '20px', borderRadius: '15px' }} elevation={6}>
@@ -49,7 +56,17 @@ const PostDetails = () => {
           <img className={classes.media} src={post.post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} alt={post.title} />
         </div>
       </div>
-      
+      {recommendedPosts.length && (
+        <div className={classes.section} >
+          <Typography gutterBottom variant="h5">You might also like: </Typography>
+          <Divider />
+          <div className={classes.recommendedPosts}>
+            {recommendedPosts.map(({ _id, title, tags, selectedFile }) => (
+              <div>{title}</div>
+            ))}
+          </div>
+        </div>
+      )}
     </Paper>
   )
 }
