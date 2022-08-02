@@ -19,7 +19,7 @@ export const getPosts = (page) => async (dispatch) => {
     dispatch({ type: START_LOADING })
     const { data: { data, currentPage, numberOfPages } } = await api.fetchPosts(page);
     dispatch({ type: FETCH_ALL, payload: { data, currentPage, numberOfPages } });
-    
+
     dispatch({ type: END_LOADING });
   } catch (error) {
     console.log(error.message);
@@ -40,10 +40,11 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
   }
 }
 
-export const createPost = (post) => async (dispatch) => {
+export const createPost = (post, navigate) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
     const { data } = await api.createPost(post);
+    navigate(`/posts/${data._id}`)
 
     dispatch({ type: CREATE, payload: data });
   } catch (error) {

@@ -8,7 +8,7 @@ import { getPost, getPostsBySearch } from '../../actions/posts'
 import useStyles from './styles'
 
 const PostDetails = () => {
-  const { post, posts, isLoading } = useSelector(state => state.posts)
+  const { post, posts, isLoading } = useSelector((state) => state.posts)
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,6 +24,8 @@ const PostDetails = () => {
     }
   }, [post])
 
+  const openPost = (_id) => navigate(`/posts/${_id}`)
+
   if (!post) return null;
 
   if (isLoading) {
@@ -35,6 +37,7 @@ const PostDetails = () => {
   }
 
   const recommendedPosts = posts.filter(({ _id }) => _id !== post._id)
+  console.log(posts);
 
   return (
     <Paper style={{ padding: '20px', borderRadius: '15px' }} elevation={6}>
@@ -61,8 +64,15 @@ const PostDetails = () => {
           <Typography gutterBottom variant="h5">You might also like: </Typography>
           <Divider />
           <div className={classes.recommendedPosts}>
-            {recommendedPosts.map(({ _id, title, tags, selectedFile }) => (
-              <div>{title}</div>
+            {recommendedPosts.map(({ title, name, tags, message, likes, selectedFile, _id }) => (
+              <div style={{ margin: '20px', cursor: 'pointer' }} onClick={() => openPost(_id)} key={_id}>
+                <Typography gutterBottom variant="h6">{title}</Typography>
+                <Typography gutterBottom variant="subtitle2">#{tags}</Typography>
+                <Typography gutterBottom variant="subtitle2">{name}</Typography>
+                <Typography gutterBottom variant="subtitle2">{message}</Typography>
+                <Typography gutterBottom variant="subtitle1">Likes: {likes.length}</Typography>
+                <img src={selectedFile} alt={title} width="200px" />
+              </div>
             ))}
           </div>
         </div>

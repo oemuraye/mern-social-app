@@ -14,7 +14,7 @@ export const getPost = async (req, res) => {
 export const getPosts = async (req, res) => {
   const { page } = req.query
   try {
-    const LIMIT = 3;
+    const LIMIT = 10;
     const startIndex = (Number(page) - 1) * LIMIT // get the starting index on every page. Also Number(***) is use to convert page number to number because it was formated to string from the frontend
     const total = await PostMessage.countDocuments({})
 
@@ -36,13 +36,12 @@ export const getPosts = async (req, res) => {
 
 export const getPostsBySearch = async (req, res) => {
   const { searchQuery, tags } = req.query;
-  console.log(searchQuery + tags);
 
   try {
     const title = new RegExp(searchQuery, 'i'); // i is for case insensitive. This converts the searchQuery to a regular expression
-
+   
     const posts = await PostMessage.find({ $or: [ { title }, { tags: { $in: tags.split(',')} } ]}); // $or is for OR. This will find any post that matches the title or tags
-  
+    
     res.status(200).json({data: posts});
   } catch (error) {
     res.status(404).json({ message: error.message });

@@ -32,7 +32,7 @@ const Home = () => {
   
   const searchPost = () => {
     if(search.trim() || tags) {
-      dispatch(getPostsBySearch({ search, tags: tags.join(",") })); // tags: tags.join(',) is used to convert the tags array to string
+      dispatch(getPostsBySearch({ search, tags: tags.join(",") })); // tags: tags.join(',') is used to convert the tags array to string
       navigate(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
     } else {
       navigate('/');
