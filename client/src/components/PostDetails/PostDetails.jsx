@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Paper, Typography, CircularProgress, Divider } from "@mui/material";
 
+import CommentSection from './CommentSection'
 import { getPost, getPostsBySearch } from '../../actions/posts'
 import useStyles from './styles'
 
@@ -51,8 +52,8 @@ const PostDetails = () => {
           <Divider style={{ margin: '20px 0' }} />
           <Typography variant="body1"><strong>Realtime Chat - coming soon!</strong></Typography>
           <Divider style={{ margin: '20px 0' }} />
-          <Typography variant="body1"><strong>Comments - coming soon!</strong></Typography>
-          {/* <CommentSection post={post} /> */}
+
+          <CommentSection post={post} />
           <Divider style={{ margin: '20px 0' }} />
         </div>
         <div className={classes.imageSection}>
