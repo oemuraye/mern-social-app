@@ -10,12 +10,18 @@ const CommentSection = ({ post }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [comment, setComment] = useState('');
-    const [comments, setComments] = useState([1,2,3,4]);
+    const [comments, setComments] = useState(post?.post?.comments);
+    const commentRef = useRef();
 
-    const handleComment = (e) => {
+    const handleComment = async () => {
         const newComment = `${user?.result?.name} : ${comment}`;
 
-        dispatch(commentPost(newComment, post.id));
+        const finalComments = await dispatch(commentPost(newComment, post.post._id));
+
+        setComments(finalComments);
+        setComment('');
+
+        commentRef.current.scrollIntoView({ behavior: 'smooth' });
     }
 
     return (
@@ -24,8 +30,12 @@ const CommentSection = ({ post }) => {
                 <div className={classes.commentsInnerContainer} >
                     <Typography gutterBottom variant="h6">Comments</Typography>
                     {comments.map((comment, index) => (
-                        <Typography key={index} gutterBottom variant="subtitle1">comment {index}</Typography>
+                        <Typography key={index} gutterBottom variant="subtitle1">
+                            <strong>{comment.split(': ')[0]}</strong>
+                            {comment.split(':')[1]}
+                        </Typography>
                     ))}
+                    <div ref={commentRef} ></div>
                 </div>
                 {user?.result?.name && (
                 <div style={{ width: '70%' }}>

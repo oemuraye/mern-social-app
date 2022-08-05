@@ -19,28 +19,28 @@ const App = () => {
                 <Navbar />
                 <Home />
               </>
-            }
+          }
           />
           <Route path="/posts/search" element={
               <>
                 <Navbar />
                 <Home />
               </>
-            }
+          }
           />
           <Route path="/posts/:id" element={
               <>
                 <Navbar />
                 <PostDetails to="/posts" />
               </>
-            }
+          }
           />
           <Route path="/auth" element={
               !user ? <>
                 <Navbar />
                 <Auth />
               </> : <Navigate to="/posts" />
-            }
+          }
           />
         </Routes>
       </Container>
