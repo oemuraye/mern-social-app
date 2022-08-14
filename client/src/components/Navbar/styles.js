@@ -3,10 +3,12 @@ import { createTheme } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 
 const theme = createTheme({
-  mainContainer: {
-      flexDirection: "column-reverse"
-    }
-});
+  // [theme.breakpoints.down('sm')]: {
+  //   mainContainer: {
+  //     flexDirection: "column-reverse"
+  //   }
+  // }
+})
 
 export default makeStyles(() => ({
   appBar: {
@@ -56,9 +58,5 @@ export default makeStyles(() => ({
     backgroundColor: deepPurple[500],
   },
 
-  // [theme.breakpoints.down('sm')]: {
-  //   mainContainer: {
-  //     flexDirection: "column-reverse"
-  //   }
-  // }
+  
 }));

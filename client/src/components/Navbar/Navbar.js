@@ -36,7 +36,7 @@ const Navbar = () => {
     }, [location])
 
     return (
-      <AppBar className={classes.appBar} position="static" color="inherit" sx={{ flexDirection: 'row', }}>
+      <AppBar className={classes.appBar} position="static" color="inherit" sx={{ flexDirection: 'column', }}>
         <Link to="/" className={classes.brandContainer}>
             <img src={memoriesText} alt="icon" height="45px" />
             <img className={classes.image} src={memoriesLogo} alt="memories" height="49px" />
