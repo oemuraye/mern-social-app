@@ -49,7 +49,7 @@ const Home = () => {
     <Grow in>
       <Container maxWidth="xl">
         <Grid container justify="space-between" alignItems="stretch" spacing={0.5} direction={{ xs: "column-reverse", md: "row" }} className={classes.gridContanier}>
-          <Grid item xs={12} sm={6} md={9}>
+          <Grid item xs={12} sm={6} md={8}>
             <Posts setCurrentId={setCurrentId} />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>

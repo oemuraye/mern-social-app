@@ -15,10 +15,14 @@ export default makeStyles(() => ({
     borderRadius: 15,
     margin: "30px 0",
     display: "flex",
-    flexDirection: "row",
+    // flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     padding: "10px 50px",
+    flexWrap: "wrap",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
   },
   heading: {
     color: "rgba(0,183,255, 1)",
@@ -39,7 +43,7 @@ export default makeStyles(() => ({
     display: "flex",
     justifyContent: "space-between",
     width: "400px",
-    alignItems:"center"
+    alignItems: "center",
   },
   logout: {
     marginLeft: "20px",
@@ -57,6 +61,4 @@ export default makeStyles(() => ({
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
   },
-
-  
 }));
