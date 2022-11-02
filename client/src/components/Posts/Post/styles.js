@@ -37,6 +37,7 @@ export default makeStyles({
     top: "20px",
     right: "-10px",
     color: "white",
+    zIndex: '100 !important'
   },
   grid: {
     display: "flex",
@@ -51,7 +52,6 @@ export default makeStyles({
   },
   cardActions: {
     padding: "0 16px 8px 16px",
-    display: "flex",
     justifyContent: "space-between",
   },
 });

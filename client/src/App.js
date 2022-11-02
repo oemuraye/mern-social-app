@@ -6,12 +6,16 @@ import Home from "./components/Home/Home";
 import Auth from "./components/Auth/Auth";
 import PostDetails from "./components/PostDetails/PostDetails";
 
+import useStyles from "./styles";
+import './index.css';
+
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
+  const classes = useStyles();
 
   return (
     <BrowserRouter>
-      <Container maxWidth="xl">
+      <Container className={classes.mainSection} maxWidth="xl">
         <Routes>
           <Route path="/" element={<Navigate to="/posts" />} />
           <Route path="/posts" element={

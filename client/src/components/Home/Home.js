@@ -48,11 +48,11 @@ const Home = () => {
   return (
     <Grow in>
       <Container maxWidth="xl">
-        <Grid container justify="space-between" alignItems="stretch" spacing={0.5} direction={{ xs: "column-reverse", md: "row" }} className={classes.gridContanier}>
+        <Grid container justify="space-between" alignItems="stretch" spacing={5} direction={{ xs: "column-reverse", md: "row" }} className={classes.gridContanier}>
           <Grid item xs={12} sm={6} md={8}>
             <Posts setCurrentId={setCurrentId} />
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={4}>
             <AppBar className={classes.appBarSearch} position="static" color="inherit">
               <TextField  name="search" variant="outlined" label="Search Memories" fullWidth value={search}
                 onChange={(e) => setSearch(e.target.value)}

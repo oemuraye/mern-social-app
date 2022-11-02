@@ -2,13 +2,7 @@ import { makeStyles } from "@mui/styles";
 import { createTheme } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 
-const theme = createTheme({
-  // [theme.breakpoints.down('sm')]: {
-  //   mainContainer: {
-  //     flexDirection: "column-reverse"
-  //   }
-  // }
-})
+const theme = createTheme({})
 
 export default makeStyles(() => ({
   appBar: {
@@ -17,11 +11,14 @@ export default makeStyles(() => ({
     display: "flex",
     // flexDirection: "row",
     justifyContent: "space-between",
+    gap: '10px',
     alignItems: "center",
     padding: "10px 50px",
-    flexWrap: "wrap",
+    // flexWrap: "wrap",
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
+      justifyContent: "center",
+      padding: "10px",
     },
   },
   heading: {
@@ -33,25 +30,51 @@ export default makeStyles(() => ({
   image: {
     marginLeft: "10px",
     marginTop: "5px",
+    [theme.breakpoints.down("sm")]: {
+      width: "35px",
+      height: "35px",
+    },
+  },
+  brandImage: {
+    [theme.breakpoints.down("sm")]: {
+      width: "170px",
+      height: "40px",
+    },
   },
   toolbar: {
     display: "flex",
     justifyContent: "flex-end",
-    width: "400px",
+    gap: "20px",
+    [theme.breakpoints.down("md")]: {
+      paddingRight: "0 !important",
+      paddingLeft: "0 !important",
+    },
   },
   profile: {
     display: "flex",
-    justifyContent: "space-between",
-    width: "400px",
+    justifyContent: "space-around",
+    gap: "10px",
     alignItems: "center",
+    [theme.breakpoints.down("sm")]: {
+      gap: "2px",
+      marginTop: "5px",
+    },
   },
   logout: {
     marginLeft: "20px",
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: "0",
+      fontSize: "10px !important",
+    },
   },
   userName: {
     display: "flex",
     alignItems: "center",
     textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      lineHeight: '1 !important',
+      fontSize: "17px !important",
+    },
   },
   brandContainer: {
     display: "flex",
