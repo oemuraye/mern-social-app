@@ -56,7 +56,7 @@ const Post = ({ post, setCurrentId }) => {
         </div>
         {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
           <div className={classes.overlay2}>
-            <Button style={{ color: 'white', position: "absolute", zIndex: '100' }} size="small" onClick={() => setCurrentId(post._id)}><MoreHorizIcon fontSize="default" /></Button>
+            <Button style={{ color: 'white', position: "absolute", zIndex: '100', top: '10px', right: '-10px' }} size="small" onClick={() => setCurrentId(post._id)}><MoreHorizIcon fontSize="default" /></Button>
           </div>
         )}
         <div className={classes.details}>
