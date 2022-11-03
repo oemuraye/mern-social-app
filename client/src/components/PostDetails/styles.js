@@ -28,7 +28,7 @@ export default makeStyles(() => ({
   },
   recommendedPosts: {
     display: "flex",
-    
+    overflow: 'auto',
   },
   loadingPaper: {
     display: "flex",
@@ -40,7 +40,9 @@ export default makeStyles(() => ({
   },
   commentsOuterContainer: {
     display: "flex",
-    justifyContent: "space-between",
+    flexWrap: 'wrap',
+    gap: "30px",
+    // justifyContent: "space-between",
   },
   commentsInnerContainer: {
     height: "200px",
