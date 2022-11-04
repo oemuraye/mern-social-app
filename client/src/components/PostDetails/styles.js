@@ -15,12 +15,14 @@ export default makeStyles(() => ({
   card: {
     display: "flex",
     width: "100%",
-    
+    gap: "20px",
+    flexWrap: "wrap",
   },
   section: {
     borderRadius: "20px",
     margin: "10px",
-    flex: 1,
+    // flex: 1,
+    maxWidth: '250px',
   },
   imageSection: {
     marginLeft: "20px",
