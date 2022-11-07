@@ -31,7 +31,7 @@ const CommentSection = ({ post }) => {
                 <div className={classes.commentsInnerContainer} >
                     {comments.map((comment, index) => (
                         <Typography key={index} gutterBottom variant="subtitle1">
-                            <strong>{comment.split(': ')[0]}</strong>
+                            <strong>{comment.split(': ')[0]}:</strong> &nbsp;
                             {comment.split(':')[1]}
                         </Typography>
                     ))}

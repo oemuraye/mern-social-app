@@ -16,21 +16,29 @@ export default makeStyles(() => ({
     display: "flex",
     width: "100%",
     gap: "20px",
-    flexWrap: "wrap",
+    [theme.breakpoints.down("sm")]: {
+      gap: "10px",
+      flexDirection: "column",
+      justifyContent: "center",
+    },
   },
   section: {
     borderRadius: "20px",
     margin: "10px",
-    // flex: 1,
-    maxWidth: '250px',
+    // maxWidth: '250px',
   },
   imageSection: {
     marginLeft: "20px",
-    
   },
   recommendedPosts: {
     display: "flex",
-    overflow: 'auto',
+    gap: "20px",
+    overflow: "auto",
+    "&::-webkit-scrollbar": { height: '3px', WebkitAppearance: "none" },
+    "&::-webkit-scrollbar-thumb": {
+      borderRadius: 8,
+      backgroundColor: "#1976D2",
+    },
   },
   loadingPaper: {
     display: "flex",
@@ -42,13 +50,18 @@ export default makeStyles(() => ({
   },
   commentsOuterContainer: {
     display: "flex",
-    flexWrap: 'wrap',
+    flexWrap: "wrap",
     gap: "30px",
     // justifyContent: "space-between",
   },
   commentsInnerContainer: {
     height: "200px",
-    overflowY: "auto",
-    marginRight: "30px",
+    padding: "5px",
+    overflow: "auto",
+    "&::-webkit-scrollbar": { width: "3px", WebkitAppearance: "none" },
+    "&::-webkit-scrollbar-thumb": {
+      borderRadius: 8,
+      backgroundColor: "#1976D2",
+    },
   },
 }));

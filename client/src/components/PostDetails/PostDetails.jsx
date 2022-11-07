@@ -47,10 +47,10 @@ const PostDetails = () => {
           <Typography variant="h3" component="h2">{post.post.title}</Typography>
           <Typography gutterBottom variant="h6" color="textSecondary" component="h2">{post.post.tags.map((tag) => `#${tag} `)}</Typography>
           <Typography gutterBottom variant="body1" component="p">{post.post.message}</Typography>
-          <Typography variant="h6"> Created by: {post.post.name} </Typography>
-          <Typography variant="body1">{moment(post.post.createdAt).fromNow()}</Typography>
           <Divider style={{ margin: '20px 0' }} />
-          <Typography variant="body1"><strong>Realtime Chat - coming soon!</strong></Typography>
+          <Typography variant="h6"> Created by: {post.post.name} </Typography>
+          <Typography variant="body2">{moment(post.post.createdAt).fromNow()}</Typography>
+          {/* <Typography variant="body1"><strong>Realtime Chat - coming soon!</strong></Typography> */}
         </div>
         <div className={classes.imageSection}>
           <img className={classes.media} src={post.post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} alt={post.title} />
@@ -65,13 +65,13 @@ const PostDetails = () => {
           <Divider />
           <div className={classes.recommendedPosts}>
             {recommendedPosts.map(({ title, name, tags, message, likes, selectedFile, _id }) => (
-              <div style={{ width: '100%', margin: '20px', cursor: 'pointer' }} onClick={() => openPost(_id)} key={_id}>
+              <div style={{ margin: '5px', cursor: 'pointer' }} onClick={() => openPost(_id)} key={_id}>
                 <Typography gutterBottom variant="h6">{title}</Typography>
                 <Typography gutterBottom variant="subtitle2">{tags.map((tag) => `#${tag} `)}</Typography>
                 <Typography gutterBottom variant="subtitle2">{name}</Typography>
                 <Typography gutterBottom variant="subtitle2">{message}</Typography>
                 <Typography gutterBottom variant="subtitle1">Likes: {likes.length}</Typography>
-                <img src={selectedFile} alt={title} width="200px" height="250px" style={{ borderRadius: '10px', }} />
+                <img src={selectedFile} alt={title} width="175px" height="175px" style={{ borderRadius: '10px', }} />
               </div>
             ))}
           </div>
