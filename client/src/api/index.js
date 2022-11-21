@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:5000" });
+const API = axios.create({ baseURL: "https://social-app-9zr3.onrender.com" });
+// const API = axios.create({ baseURL: "http://localhost:5000" });
 
 // This is the function that will be called to get the data from the server
 // It will send the token to the server to help the middleware to identify the user
